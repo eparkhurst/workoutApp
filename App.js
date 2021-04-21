@@ -1,13 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet} from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { WorkoutContext } from './workoutContext';
+import Basic from './components/Basic';
+import Workouts from './components/workouts';
+
+const Stack = createStackNavigator();
 
 export default function App() {
+  const [workouts, setWorkouts] = useState(['Monday', 'Tuesday'])
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <WorkoutContext.Provider
+      value={{
+        workouts
+      }}
+    >
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Workouts"
+            component={Workouts}
+            options={{ title: 'Welcome' }}
+          />
+          <Stack.Screen name="Profile" component={Basic} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </WorkoutContext.Provider>
   );
 }
 

@@ -1,33 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import 'react-native-gesture-handler';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { WorkoutContext } from './workoutContext';
-import Basic from './components/Basic';
-import Workouts from './components/workouts';
+import Basic from './components/WorkoutScreen';
+import Workouts from './components/Workouts';
+import Exercise from './components/Exercise';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import workoutReducer from './data/workoutReducer';
 
 const Stack = createStackNavigator();
+const store = createStore(workoutReducer);
 
 export default function App() {
-  const [workouts, setWorkouts] = useState(['Monday', 'Tuesday'])
   return (
-    <WorkoutContext.Provider
-      value={{
-        workouts
-      }}
-    >
+    <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="Workouts"
             component={Workouts}
-            options={{ title: 'Welcome' }}
+            options={{ title: 'Get Strong' }}
           />
-          <Stack.Screen name="Profile" component={Basic} />
+          <Stack.Screen
+           name="Profile"
+            component={Basic}
+            options={({ route }) => ({ title: route.params.title })}
+          />
+          <Stack.Screen
+            name="Exercise"
+            component={Exercise}
+            options={({ route }) => ({ title: route.params.title })}
+          />
         </Stack.Navigator>
       </NavigationContainer>
-    </WorkoutContext.Provider>
+    </Provider>
   );
 }
 

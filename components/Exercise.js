@@ -1,28 +1,32 @@
 import React, {useState} from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { Provider, Portal, Modal, Button, Colors, TextInput } from 'react-native-paper';
+import { connect } from 'react-redux';
 
-const Exercise = ({ route}) => {
+import { addSet } from '../data/session/sessionActions';
+
+const Exercise = ({ route, addThatSet, currentSession }) => {
     const [showInputs, toggleInputs] = useState(false);
-    const [sets, updateSets] = useState([]);
     const [reps, updateReps] = useState();
     const [weight, updateWeight] = useState();
 
-    const exercise = route.params.exercise;
+    const { exercise } = route.params;
+    const exerciseHistory = currentSession.exercises[exercise.id] || [];
 
     const hideModal = () => toggleInputs(false);
 
     const addSet = () => {
-        updateSets([...sets, { weight, reps }])
+        addThatSet({ set: { weight, reps }, exerciseId: exercise.id})
         updateReps()
         updateWeight()
         toggleInputs(false)
     }
+
     return ( 
         <Provider style={styles.container}>
-            {sets.map((set, i) => {
+            {exerciseHistory.map((set, i) => {
                 return (<Text key={`set${i}`}>
-                    {`${set.wieght} / ${set.reps}`}
+                    {`${set.weight} lbs / ${set.reps} reps`}
                 </Text>)
             })}
     
@@ -84,4 +88,10 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Exercise;
+const mapStateToProps = ({currentSession}) => ({ currentSession });
+
+const mapDispatchToProps = ((dispatch) => ({
+    addThatSet: (setDetails) => dispatch(addSet(setDetails))
+}));
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Exercise);

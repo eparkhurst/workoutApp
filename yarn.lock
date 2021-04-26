@@ -4668,6 +4668,10 @@ range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
 
+react-dev-tools@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-dev-tools/-/react-dev-tools-0.0.1.tgz#f7cf35ad701db3c028280c632767fba6dba13ac7"
+
 react-devtools-core@^4.6.0:
   version "4.12.4"
   resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.12.4.tgz#50ed121d467f44b051d1f7d19694849db0365d52"
@@ -4867,6 +4871,10 @@ redux-devtools-instrument@^1.9.4:
   dependencies:
     lodash "^4.17.19"
     symbol-observable "^1.2.0"
+
+redux-persist@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
 
 redux@^4.0.0:
   version "4.0.5"

@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
 
 const INITIAL_STATE = [
     {
         title: 'Shoulders',
+        id:'123abc',
         exercises: [
             {
                  title: 'Lat Raises',
@@ -13,6 +13,7 @@ const INITIAL_STATE = [
     },
     {
         title: 'Chest',
+        id:'ergebc',
         exercises: [
             { title: 'Bench', id: '3', },
             { title: 'Decline', id: '4', }
@@ -20,6 +21,7 @@ const INITIAL_STATE = [
     },
     {
         title: 'Legs',
+        id:'00998bh',
         exercises: [
             { title: 'Squats', id: '5', },
             { title: 'Calf Raises', id: '6', }
@@ -36,6 +38,4 @@ const workoutReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default combineReducers({
-  workouts: workoutReducer
-});
+export default workoutReducer;

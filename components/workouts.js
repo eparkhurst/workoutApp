@@ -9,7 +9,7 @@ const Workouts = ({ workouts = [], navigation }) => {
         <Item
             title={item.title}
             onPress={() => {
-                navigation.navigate('Profile', {workout:item, title: item.title })
+                navigation.navigate('WorkoutScreen', {workout:item, title: item.title })
             }}
         />
       );

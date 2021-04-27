@@ -1,55 +1,112 @@
-import React, {useEffect} from 'react';
-import { SafeAreaView, StyleSheet, FlatList, Button } from 'react-native';
+import React from 'react';
 import { connect } from 'react-redux';
+import { Text, View, StyleSheet, FlatList } from 'react-native';
+import { Button, Chip } from 'react-native-paper';
 import Item from './Item';
 
-import { createWorkout } from '../data/session/sessionActions';
+import { createWorkout, endWorkout } from '../data/session/sessionActions';
+import { saveWorkout } from '../data/history/historyActions';
 
 
-const WorkoutScreen = ({navigation, route, _createWorkout, currentSession}) => {
+const WorkoutScreen = ({navigation, route, _createWorkout, currentSession, _saveWorkout, _endWorkout}) => {
     const workout = route.params.workout;
     console.log(currentSession)
+    console.log(workout)
+    
     const startWorkout = () => {
-        _createWorkout({ workoutTitle: workout.title })
+        _createWorkout({ workout })
     }
 
+    const finishWorkout = () => {
+        _saveWorkout({ workout: currentSession });
+        _endWorkout()
+    }
+
+    const getHistory = (exerciseId) => {
+        const sets = currentSession.exercises[exerciseId]
+        return (
+        <View style={styles.historyContainer}>
+            {sets.map((set, i) => (
+             <Chip key={i+set.weight}>{`${set.weight} lbs / ${set.reps} reps`}</Chip>
+            ))}
+        </View>
+        )
+    }
     const renderItem = ({ item }) => (
         <Item
+            right={currentSession.id && getHistory(item.id)}
             title={item.title}
             onPress={() => {
-                console.log(currentSession)
                 if(currentSession.id) {
                     navigation.navigate('Exercise', {exercise: item, title: item.title })
                 }
             }}
-        />
+        >
+        </Item>
       );
     return ( 
-        <SafeAreaView style={styles.container}>
-            <Button 
-                title="hey"
-                onPress={startWorkout}
-            />
+        <View>
             <FlatList
                 data={workout.exercises}
                 renderItem={renderItem}
                 keyExtractor={item => item.title}
+                extraData={currentSession}
             />
-        </SafeAreaView>
+            <View style={styles.buttonContainer}>
+                { !currentSession.id ?
+                    <Button 
+                        onPress={startWorkout}
+                        // contentStyle={styles.myButton}
+                        style={styles.myButton}
+                        mode="contained"
+                    >
+                        START
+                    </Button>:
+                    <Button 
+                        onPress={finishWorkout}
+                        // contentStyle={styles.myButton}
+                        style={styles.myButton}
+                        mode="contained"
+                    >
+                    END
+                </Button>
+                }
+                <Button 
+                    onPress={() => {}}
+                    // contentStyle={styles.myButton}
+                    style={styles.myButton}
+                    mode="outlined"
+                >
+                    Edit
+                </Button>
+            </View>
+        </View>
     )
     
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
+    buttonContainer: {
+        paddingTop: '20px',
+        display: 'flex',
+        flexDirection:'row',
+        justifyContent: 'space-evenly',
+    },
+    historyContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    myButton: {
+        width: 'fit-content',
     },
 });
 
-const mapStateToProps = ({ currentSession}) => ({ currentSession });
+const mapStateToProps = ({ currentSession }) => ({ currentSession });
 
 const mapDispatchToProps = ((dispatch) => ({
-    _createWorkout: (setDetails) => dispatch(createWorkout(setDetails))
+    _createWorkout: (setDetails) => dispatch(createWorkout(setDetails)),
+    _endWorkout: (setDetails) => dispatch(endWorkout(setDetails)),
+    _saveWorkout: (setDetails) => dispatch(saveWorkout(setDetails)),
 }));
   
 export default connect(mapStateToProps, mapDispatchToProps)(WorkoutScreen);

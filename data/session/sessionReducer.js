@@ -15,12 +15,22 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
         return nextSession
     }
     case 'CREATE_WORKOUT': {
+        const { workout} = action.payload
         const nextSession = {
             id: Date.now(),
-            exercises: {},
-            workoutTitle: action.payload.workoutTitle
+            exercises: workout.exercises.reduce((p,c) => {
+                p[c.id] = [];
+                return p
+            }, {}),
+            workoutTitle: workout.title
         }
         return nextSession
+    }
+    case 'END_WORKOUT': {
+        return {
+            id: undefined,
+            exercises: {}
+        };
     }
     default:
       return state

@@ -8,7 +8,8 @@ const INITIAL_STATE = [
                  title: 'Lat Raises',
                  id: '1',
             },
-            { title: 'Delts', id: '2', }
+            { title: 'Delts', id: '2', },
+            { title: 'Pull Downs', id: '18', }
         ]
     },
     {
@@ -22,6 +23,14 @@ const INITIAL_STATE = [
     {
         title: 'Legs',
         id:'00998bh',
+        exercises: [
+            { title: 'Squats', id: '5', },
+            { title: 'Calf Raises', id: '6', }
+        ]
+    },
+    {
+        title: 'Other',
+        id:'1p998bh',
         exercises: [
             { title: 'Squats', id: '5', },
             { title: 'Calf Raises', id: '6', }

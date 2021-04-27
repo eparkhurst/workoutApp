@@ -1,13 +1,6 @@
-export const addSet = details => (
+export const saveWorkout = details => (
     {
-      type: 'ADD_SET',
-      payload: details,
-    }
-  );
-
-export const createWorkout = details => (
-    {
-      type: 'CREATE_WORKOUT',
+      type: 'SAVE_WORKOUT',
       payload: details,
     }
   );

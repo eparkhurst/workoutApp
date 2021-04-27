@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Item from './Item';
 
 const Workouts = ({ workouts = [], navigation }) => {
+    console.log(workouts)
     const renderItem = ({ item }) => (
         <Item
             title={item.title}

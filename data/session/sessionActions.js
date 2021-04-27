@@ -11,3 +11,9 @@ export const createWorkout = details => (
       payload: details,
     }
   );
+export const endWorkout = details => (
+    {
+      type: 'END_WORKOUT',
+      payload: details,
+    }
+  );

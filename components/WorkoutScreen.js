@@ -10,8 +10,6 @@ import { saveWorkout } from '../data/history/historyActions';
 
 const WorkoutScreen = ({navigation, route, _createWorkout, currentSession, _saveWorkout, _endWorkout}) => {
     const workout = route.params.workout;
-    console.log(currentSession)
-    console.log(workout)
     
     const startWorkout = () => {
         _createWorkout({ workout })
@@ -32,14 +30,14 @@ const WorkoutScreen = ({navigation, route, _createWorkout, currentSession, _save
         </View>
         )
     }
+
     const renderItem = ({ item }) => (
         <Item
             right={currentSession.id && getHistory(item.id)}
             title={item.title}
+            disabled={!currentSession.id}
             onPress={() => {
-                if(currentSession.id) {
-                    navigation.navigate('Exercise', {exercise: item, title: item.title })
-                }
+                navigation.navigate('Exercise', {exercise: item, title: item.title })
             }}
         >
         </Item>

@@ -63,14 +63,16 @@ export default function App() {
         <PaperProvider>
           <NavigationContainer>
             <Tab.Navigator
+              shifting={true} 
                activeColor="#f0edf6"
                inactiveColor="#3e2465"
-               barStyle={{ backgroundColor: '#694fad' }}
+
             >
               <Tab.Screen
                 name="WorkoutApp"
                 component={WorkoutApp}
                 options={{
+                  tabBarColor: '#694fad',
                   tabBarLabel: 'Home',
                   tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="home" color={color} size={26} />
@@ -81,7 +83,7 @@ export default function App() {
                 name="History"
                 component={History}
                 options={{
-                  tabColor: '#009688',
+                  tabBarColor: '#009688',
                   tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="chart-line" color={color} size={26} />
                   ),

@@ -1,11 +1,14 @@
+const INITIAL_STATE = [];
 
-import * as React from 'react';
-import { Text } from 'react-native-paper';
-
-const History = () => {
-  return (
-    <Text>Hello</Text>
-  );
+const historyReducer = (state = INITIAL_STATE, action) => {
+switch (action.type) {
+  case 'SAVE_WORKOUT':{
+      const { workout } = action.payload;
+      return [...state, workout ]
+  }
+  default:
+    return state
+}
 };
 
-export default History;
+export default historyReducer;

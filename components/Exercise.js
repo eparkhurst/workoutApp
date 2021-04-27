@@ -7,8 +7,8 @@ import { addSet } from '../data/session/sessionActions';
 
 const Exercise = ({ route, addThatSet, currentSession }) => {
     const [showInputs, toggleInputs] = useState(false);
-    const [reps, updateReps] = useState();
-    const [weight, updateWeight] = useState();
+    const [reps, updateReps] = useState('');
+    const [weight, updateWeight] = useState('');
 
     const { exercise } = route.params;
     const exerciseHistory = currentSession.exercises[exercise.id] || [];
@@ -17,8 +17,8 @@ const Exercise = ({ route, addThatSet, currentSession }) => {
 
     const addSet = () => {
         addThatSet({ set: { weight, reps }, exerciseId: exercise.id})
-        updateReps()
-        updateWeight()
+        updateReps('')
+        updateWeight('')
         toggleInputs(false)
     }
 

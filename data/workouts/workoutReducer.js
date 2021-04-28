@@ -1,7 +1,7 @@
 
 const INITIAL_STATE = [
     {
-        title: 'Shoulders',
+        title: 'Shoulder Day',
         id:'123abc',
         exercises: [
             {
@@ -13,7 +13,7 @@ const INITIAL_STATE = [
         ]
     },
     {
-        title: 'Chest',
+        title: 'Chest Day',
         id:'ergebc',
         exercises: [
             { title: 'Bench', id: '3', },
@@ -21,7 +21,7 @@ const INITIAL_STATE = [
         ]
     },
     {
-        title: 'Legs',
+        title: 'Leg Day',
         id:'00998bh',
         exercises: [
             { title: 'Squats', id: '5', },

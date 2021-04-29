@@ -20,6 +20,7 @@
     "react-dev-tools": "^0.0.1",
     "react-dom": "16.13.1",
     "react-native": "~0.63.4",
+    "react-native-autocomplete-input": "^5.0.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-paper": "^4.7.2",
     "react-native-reanimated": "^2.1.0",

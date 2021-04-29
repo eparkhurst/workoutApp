@@ -1,7 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, FlatList, SafeAreaView, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import PredictiveInput from '../commonComponents/predictiveInput';
 import Item from './Item';
+import jsonData from '../../data/exerciseData';
 
 const Workouts = ({ workouts = [], navigation }) => {
     console.log(workouts)
@@ -20,6 +22,7 @@ const Workouts = ({ workouts = [], navigation }) => {
                 renderItem={renderItem}
                 keyExtractor={item => item.title}
             />
+            <PredictiveInput data={jsonData} />
         </SafeAreaView>
     )
 }

@@ -4,13 +4,12 @@ import { Text, View, StyleSheet, FlatList } from 'react-native';
 import { Button, Chip } from 'react-native-paper';
 import Item from './Item';
 
-import { createWorkout, endWorkout } from '../data/session/sessionActions';
-import { saveWorkout } from '../data/history/historyActions';
+import { createWorkout, endWorkout } from '../../data/session/sessionActions';
+import { saveWorkout } from '../../data/history/historyActions';
 
 
 const WorkoutScreen = ({navigation, route, _createWorkout, currentSession, _saveWorkout, _endWorkout}) => {
     const workout = route.params.workout;
-    
     const startWorkout = () => {
         _createWorkout({ workout })
     }
@@ -33,9 +32,9 @@ const WorkoutScreen = ({navigation, route, _createWorkout, currentSession, _save
 
     const renderItem = ({ item }) => (
         <Item
-            right={currentSession.id && getHistory(item.id)}
+            right={currentSession.workoutTitle === workout.title && getHistory(item.id)}
             title={item.title}
-            disabled={!currentSession.id}
+            disabled={!currentSession.workoutTitle === workout.title}
             onPress={() => {
                 navigation.navigate('Exercise', {exercise: item, title: item.title })
             }}

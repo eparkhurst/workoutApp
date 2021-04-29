@@ -3,7 +3,7 @@ import { StyleSheet, Text } from 'react-native';
 import { Provider, Portal, Modal, Button, Colors, TextInput } from 'react-native-paper';
 import { connect } from 'react-redux';
 
-import { addSet } from '../../data/session/sessionActions';
+import { addSet } from '../../../data/session/sessionActions';
 
 const Exercise = ({ route, addThatSet, currentSession }) => {
     const [showInputs, toggleInputs] = useState(false);

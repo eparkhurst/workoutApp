@@ -1,12 +1,15 @@
 import React from 'react'
-import { StyleSheet, Text, FlatList, SafeAreaView, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, FlatList, SafeAreaView} from 'react-native';
+import { Button } from 'react-native-paper';
 import { connect } from 'react-redux';
-import PredictiveInput from '../commonComponents/predictiveInput';
-import Item from './Item';
-import jsonData from '../../data/exerciseData';
+import PredictiveInput from '../../common/predictiveInput';
+import Item from '../../common/Item';
 
 const Workouts = ({ workouts = [], navigation }) => {
-    console.log(workouts)
+    const createWorkout = () => {
+        navigation.navigate('CreateWorkout', { title: 'Create Workout'})
+    }
+
     const renderItem = ({ item }) => (
         <Item
             title={item.title}
@@ -22,7 +25,7 @@ const Workouts = ({ workouts = [], navigation }) => {
                 renderItem={renderItem}
                 keyExtractor={item => item.title}
             />
-            <PredictiveInput data={jsonData} />
+            <Button onPress={createWorkout}>Create New Workout</Button>
         </SafeAreaView>
     )
 }

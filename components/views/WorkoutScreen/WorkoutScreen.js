@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Text, View, StyleSheet, FlatList } from 'react-native';
 import { Button, Chip } from 'react-native-paper';
-import Item from './Item';
+import Item from '../../common/Item';
 
-import { createWorkout, endWorkout } from '../../data/session/sessionActions';
-import { saveWorkout } from '../../data/history/historyActions';
+import { createWorkout, endWorkout } from '../../../data/session/sessionActions';
+import { saveWorkout } from '../../../data/history/historyActions';
 
 
 const WorkoutScreen = ({navigation, route, _createWorkout, currentSession, _saveWorkout, _endWorkout}) => {

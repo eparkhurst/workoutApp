@@ -7,11 +7,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
-import WorkoutScreen from './views/WorkoutScreen';
-import Workouts from './views/Workouts';
-import Exercise from './views/Exercise';
-import History from './views/History';
+import WorkoutScreen from '../views/WorkoutScreen';
+import Workouts from '../views/Workouts';
+import Exercise from '../views/Exercise';
+import History from '../views/History';
+import CreateWorkout from '../views/CreateWorkout';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -45,6 +45,11 @@ function WorkoutStuff({ currentSession }) {
     <Stack.Screen
       name="Exercise"
       component={Exercise}
+      options={({ route }) => ({ title: route.params.title })}
+    />
+    <Stack.Screen
+      name="CreateWorkout"
+      component={CreateWorkout}
       options={({ route }) => ({ title: route.params.title })}
     />
   </Stack.Navigator>

@@ -4,3 +4,10 @@ export const addWorkout = workout => (
       payload: workout,
     }
   );
+
+export const updateWorkout = workout => (
+    {
+      type: 'UPDATE_WORKOUT',
+      payload: workout,
+    }
+  );

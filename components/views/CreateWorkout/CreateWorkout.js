@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { Text, View, StyleSheet, FlatList } from 'react-native';
 import Item from '../../common/Item';
-import PredictiveInput from '../../common/predictiveInput';
+import PredictiveInput from '../../common/PredictiveInput/PredictiveInput';
 import jsonData from '../../../data/exerciseData';
-// import { createWorkout, endWorkout } from '../../data/session/sessionActions';
+import { createWorkout, updateWorkout } from '../../../data/workouts/workoutActions';
+import { Card, IconButton } from 'react-native-paper';
 // import { saveWorkout } from '../../data/history/historyActions';
 
 
-const CreateWorkout = ({ workout }) => {
+const CreateWorkout = ({ workouts, _createWorkout, _updateWorkout }) => {
+    const [timeStamp] = useState(Date.now())
+    const [newExercise, updateNewExercise] = useState('')
+    const currentWorkout = workouts.find(workout => workout.id == timeStamp)
 
+    // useEffect(() => {
+    //     _createWorkout({
+    //         id: timeStamp,
+    //     })
+    // }, [])
+    
+    const onTextChange = (exercise) => {
+        updateNewExercise(exercise);
+    }
+
+    console.log(currentWorkout);
     const renderItem = ({ item }) => (
         <Item
             right={currentSession.workoutTitle === workout.title && getHistory(item.id)}
@@ -22,11 +37,21 @@ const CreateWorkout = ({ workout }) => {
         </Item>
       );
     return ( 
-        <View>
+        <View style={styles.pageView}>
             <Text>
                 create new workout
             </Text>
-            <PredictiveInput data={jsonData} />
+            <Card style={styles.newExerciseCard}>
+                <Card.Content style={styles.newExerciseCard}>
+                    <PredictiveInput data={jsonData} onChange={onTextChange} />
+                    <IconButton
+                        icon="plus"
+                        color="blue"
+                        size={20}
+                        onPress={() => console.log('Pressed')}
+                    />
+                </Card.Content>
+            </Card>
             {/* <FlatList
                 data={workout.exercises}
                 renderItem={renderItem}
@@ -39,14 +64,20 @@ const CreateWorkout = ({ workout }) => {
 }
 
 const styles = StyleSheet.create({
+    pageView: {
+        padding: '20px'
+    },
+    newExerciseCard: {
+        display: 'flex',
+        flexDirection: 'row',
+    }
 });
 
-const mapStateToProps = ({ currentSession }) => ({ currentSession });
+const mapStateToProps = ({ workouts }) => ({ workouts });
 
 const mapDispatchToProps = ((dispatch) => ({
-    // _createWorkout: (setDetails) => dispatch(createWorkout(setDetails)),
-    // _endWorkout: (setDetails) => dispatch(endWorkout(setDetails)),
-    // _saveWorkout: (setDetails) => dispatch(saveWorkout(setDetails)),
+    _createWorkout: (setDetails) => dispatch(createWorkout(setDetails)),
+    _updateWorkout: (setDetails) => dispatch(updateWorkout(setDetails)),
 }));
   
 export default connect(mapStateToProps, mapDispatchToProps)(CreateWorkout);

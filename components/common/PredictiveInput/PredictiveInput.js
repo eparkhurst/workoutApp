@@ -17,18 +17,20 @@ const findData = (query, data) =>  {
   }
 
   
-const PredictiveInput = ({data, placeHolder}) => {
+const PredictiveInput = ({data, placeHolder, onChange }) => {
     const [query, updateQuery] = useState('')
     const [clicked, updateClicked] = useState('')
     
     let exerciseData = clicked != query ? findData(query, data) : []
 
     const onSelect = (name) => {
+        onChange(name)
         updateQuery(name);
         updateClicked(name);
     }
 
     const onTextChange = (name) => {
+        onChange(name)
         updateQuery(name);
         updateClicked('');
     }
@@ -63,7 +65,6 @@ const PredictiveInput = ({data, placeHolder}) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      marginTop: 40
     },
     itemText: {
       padding: 16

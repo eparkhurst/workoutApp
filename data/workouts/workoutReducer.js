@@ -42,6 +42,10 @@ const workoutReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'ADD_WORKOUT':
         return [...state, action.payload]
+    case 'UPDATE_WORKOUT':
+        const {id} = action.payload;
+        const workoutIndex = state.findIndex((workout) => workout.id === id )
+        return [state.map((existingWorkout, index) => index === workoutIndex ? action.payload : existingWorkout)]
     default:
       return state
   }

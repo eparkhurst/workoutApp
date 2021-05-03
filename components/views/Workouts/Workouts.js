@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, FlatList, SafeAreaView} from 'react-native';
 import { Button } from 'react-native-paper';
 import { connect } from 'react-redux';
-import PredictiveInput from '../../common/predictiveInput';
+import PredictiveInput from '../../common/PredictiveInput/PredictiveInput';
 import Item from '../../common/Item';
 
 const Workouts = ({ workouts = [], navigation }) => {

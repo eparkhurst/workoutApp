@@ -1,3 +1,3 @@
-import Workouts from './Workouts';
+import Workouts from "./Workouts";
 
 export default Workouts;

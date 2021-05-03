@@ -1,6 +1,4 @@
-export const saveWorkout = details => (
-    {
-      type: 'SAVE_WORKOUT',
-      payload: details,
-    }
-  );
+export const saveWorkout = (details) => ({
+  type: "SAVE_WORKOUT",
+  payload: details,
+});

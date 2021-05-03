@@ -7,10 +7,10 @@ const stuff = fs.readFile(
   (err, file) => {
     const list = file.trim().split("\n");
     const formatted = list.map((item, i) => {
-      const [name, area] = item.split(",");
+      const [title, area] = item.split(",");
       return {
         id: i + 1,
-        name,
+        title,
         area,
       };
     });

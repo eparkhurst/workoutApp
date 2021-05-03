@@ -26,7 +26,7 @@ const Workouts = ({ workouts = [], navigation }) => {
       <FlatList
         data={workouts}
         renderItem={renderItem}
-        keyExtractor={(item) => item.title}
+        keyExtractor={(item) => item.id}
       />
       <Button onPress={createWorkout}>Create New Workout</Button>
     </SafeAreaView>

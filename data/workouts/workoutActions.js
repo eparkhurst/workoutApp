@@ -1,4 +1,4 @@
-export const addWorkout = (workout) => ({
+export const createWorkout = (workout) => ({
   type: "ADD_WORKOUT",
   payload: workout,
 });

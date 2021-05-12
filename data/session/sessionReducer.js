@@ -5,6 +5,12 @@ const INITIAL_STATE = {
 
 const sessionReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case "ADD_EXERCISE_TO_SESSION": {
+      const { exercise } = action.payload;
+      const nextSession = { ...state };
+      nextSession.exercises[exercise.id] = [];
+      return nextSession;
+    }
     case "ADD_SET": {
       const { exerciseId, set } = action.payload;
       const nextSession = { ...state };

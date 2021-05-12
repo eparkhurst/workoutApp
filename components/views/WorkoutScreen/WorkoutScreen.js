@@ -14,6 +14,7 @@ import {
 import Item from "../../common/Item";
 import {
   addSet,
+  addExerciseToSession,
   createWorkout,
   endWorkout,
 } from "../../../data/session/sessionActions";
@@ -26,6 +27,7 @@ const WorkoutScreen = ({
   route,
   addThatSet,
   currentSession,
+  _addExerciseToSession,
   _createWorkout,
   _saveWorkout,
   _endWorkout,
@@ -41,7 +43,7 @@ const WorkoutScreen = ({
   const workout = route.params.workout;
   const currentWorkout =
     workouts.find((wo) => wo.id == workout.id) || {};
-
+  console.log(currentWorkout);
 
   const hideModal = () => toggleInputs(false);
 
@@ -54,7 +56,7 @@ const WorkoutScreen = ({
     _endWorkout();
   };
 
-  const addSet = () => {
+  const addSetSubmit = () => {
     addThatSet({ set: { weight, reps }, exerciseId: exercise.id });
     updateReps("");
     updateWeight("");
@@ -64,6 +66,8 @@ const WorkoutScreen = ({
   const addExercise = (newExercise) => {
     updateShowExercise(false)
     if(!newExercise.id) newExercise.id = Date.now();
+    newExercise.id = String(newExercise.id);
+    _addExerciseToSession({ exercise: newExercise });
     const exercises = [...currentWorkout.exercises, newExercise];
     _updateWorkout({ ...currentWorkout, exercises });
   };
@@ -105,6 +109,8 @@ const WorkoutScreen = ({
       }}
     ></Item>
   );
+
+
   return (
     <Provider>
       <View style={styles.buttonContainer}>
@@ -182,7 +188,7 @@ const WorkoutScreen = ({
             icon="plus-circle"
             color={Colors.red500}
             size={20}
-            onPress={addSet}
+            onPress={addSetSubmit}
             mode="contained"
           >
             Add Set
@@ -243,6 +249,7 @@ const mapStateToProps = ({ currentSession, workouts }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addThatSet: (setDetails) => dispatch(addSet(setDetails)),
+  _addExerciseToSession: (setDetails) => dispatch(addExerciseToSession(setDetails)),
   _createWorkout: (setDetails) => dispatch(createWorkout(setDetails)),
   _endWorkout: (setDetails) => dispatch(endWorkout(setDetails)),
   _saveWorkout: (setDetails) => dispatch(saveWorkout(setDetails)),

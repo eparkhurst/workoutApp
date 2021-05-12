@@ -16,7 +16,6 @@ const AddExercise = ({onSubmit}) => {
     onSubmit(exercise)
   };
 
-  console.log(jsonData);
   return (
     <View>
       <Card style={styles.newExerciseCard}>

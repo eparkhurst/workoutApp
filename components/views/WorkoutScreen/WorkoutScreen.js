@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { Text, View, StyleSheet, FlatList } from "react-native";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Text, View, StyleSheet, FlatList } from 'react-native';
 import {
   Button,
   Chip,
@@ -10,17 +10,17 @@ import {
   Provider,
   Portal,
   TextInput,
-} from "react-native-paper";
-import Item from "../../common/Item";
+} from 'react-native-paper';
+import Item from '../../common/Item';
 import {
   addSet,
   addExerciseToSession,
   createWorkout,
   endWorkout,
-} from "../../../data/session/sessionActions";
-import { saveWorkout } from "../../../data/history/historyActions";
-import { updateWorkout } from "../../../data/workouts/workoutActions";
-import AddExercise from "../../common/AddExercise";
+} from '../../../data/session/sessionActions';
+import { saveWorkout } from '../../../data/history/historyActions';
+import { updateWorkout } from '../../../data/workouts/workoutActions';
+import AddExercise from '../../common/AddExercise';
 
 const WorkoutScreen = ({
   route,
@@ -37,8 +37,8 @@ const WorkoutScreen = ({
   const [editing, updateEditing] = useState(false);
   const [showInputs, toggleInputs] = useState(false);
   const [exercise, updateExercise] = useState();
-  const [reps, updateReps] = useState("");
-  const [weight, updateWeight] = useState("");
+  const [reps, updateReps] = useState('');
+  const [weight, updateWeight] = useState('');
   const workout = route.params.workout;
   const currentWorkout = workouts.find((wo) => wo.id == workout.id) || {};
   console.log(currentWorkout);
@@ -56,8 +56,8 @@ const WorkoutScreen = ({
 
   const addSetSubmit = () => {
     addThatSet({ set: { weight, reps }, exerciseId: exercise.id });
-    updateReps("");
-    updateWeight("");
+    updateReps('');
+    updateWeight('');
     toggleInputs(false);
   };
 
@@ -72,6 +72,7 @@ const WorkoutScreen = ({
 
   const getHistory = (exerciseId) => {
     const sets = currentSession.exercises[exerciseId];
+    console.log('prettier');
     return (
       <View style={styles.historyContainer}>
         {sets.map((set, i) => (
@@ -95,7 +96,7 @@ const WorkoutScreen = ({
             icon="close-box-outline"
             color={Colors.red500}
             size={20}
-            onPress={() => console.log("Pressed")}
+            onPress={() => console.log('Pressed')}
           />
         )
       }
@@ -210,26 +211,26 @@ const WorkoutScreen = ({
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    paddingTop: "20px",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    paddingTop: '20px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
   historyContainer: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
   },
   myButton: {
-    width: "fit-content",
+    width: 'fit-content',
   },
   container: {
     padding: 20,
   },
   inputContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   containerStyle: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     padding: 20,
     margin: 20,
     minHeight: 350,

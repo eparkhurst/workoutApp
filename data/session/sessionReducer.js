@@ -5,20 +5,20 @@ const INITIAL_STATE = {
 
 const sessionReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "ADD_EXERCISE_TO_SESSION": {
+    case 'ADD_EXERCISE_TO_SESSION': {
       const { exercise } = action.payload;
       const nextSession = { ...state };
       nextSession.exercises[exercise.id] = [];
       return nextSession;
     }
-    case "ADD_SET": {
+    case 'ADD_SET': {
       const { exerciseId, set } = action.payload;
       const nextSession = { ...state };
       const currentExercise = state.exercises[exerciseId] || [];
       nextSession.exercises[exerciseId] = [...currentExercise, set];
       return nextSession;
     }
-    case "CREATE_WORKOUT": {
+    case 'CREATE_WORKOUT': {
       const { workout } = action.payload;
       const nextSession = {
         id: Date.now(),
@@ -30,7 +30,7 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
       };
       return nextSession;
     }
-    case "END_WORKOUT": {
+    case 'END_WORKOUT': {
       return {
         id: undefined,
         exercises: {},

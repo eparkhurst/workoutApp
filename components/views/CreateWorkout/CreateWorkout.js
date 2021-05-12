@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { Text, View, StyleSheet, FlatList } from "react-native";
-import { TextInput } from "react-native-paper";
-import Item from "../../common/Item";
-import PredictiveInput from "../../common/PredictiveInput/PredictiveInput";
-import jsonData from "../../../data/exerciseData";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { Text, View, StyleSheet, FlatList } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import Item from '../../common/Item';
+import PredictiveInput from '../../common/PredictiveInput/PredictiveInput';
+import jsonData from '../../../data/exerciseData';
 import {
   createWorkout,
   updateWorkout,
-} from "../../../data/workouts/workoutActions";
-import { Card, IconButton } from "react-native-paper";
+} from '../../../data/workouts/workoutActions';
+import { Card, IconButton } from 'react-native-paper';
 
-const CreateWorkout = ({ workouts, _createWorkout, _updateWorkout, navigation }) => {
+const CreateWorkout = ({
+  workouts,
+  _createWorkout,
+  _updateWorkout,
+  navigation,
+}) => {
   const [timeStamp] = useState(`${Date.now()}`);
-  const [newExercise, updateNewExercise] = useState("");
-  const [newTitle, updateTitle] = useState("");
+  const [newExercise, updateNewExercise] = useState('');
+  const [newTitle, updateTitle] = useState('');
   const currentWorkout =
     workouts.find((workout) => workout.id == timeStamp) || {};
 
@@ -30,12 +35,12 @@ const CreateWorkout = ({ workouts, _createWorkout, _updateWorkout, navigation })
   };
 
   const commitTitle = () => {
-    navigation.setParams({ title: newTitle })
+    navigation.setParams({ title: newTitle });
     _updateWorkout({ title: newTitle, ...currentWorkout });
   };
 
   const addExercise = (e) => {
-    if(!newExercise.id) newExercise.id = Date.now();
+    if (!newExercise.id) newExercise.id = Date.now();
     const exercises = [...currentWorkout.exercises, newExercise];
     _updateWorkout({ ...currentWorkout, exercises });
   };
@@ -90,12 +95,12 @@ const CreateWorkout = ({ workouts, _createWorkout, _updateWorkout, navigation })
 
 const styles = StyleSheet.create({
   pageView: {
-    padding: "20px",
+    padding: '20px',
   },
   newExerciseCard: {
-    zIndex:1,
-    display: "flex",
-    flexDirection: "row",
+    zIndex: 1,
+    display: 'flex',
+    flexDirection: 'row',
   },
 });
 

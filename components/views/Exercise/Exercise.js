@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { StyleSheet, Text } from "react-native";
+import React, { useState } from 'react';
+import { StyleSheet, Text } from 'react-native';
 import {
   Provider,
   Portal,
@@ -7,15 +7,15 @@ import {
   Button,
   Colors,
   TextInput,
-} from "react-native-paper";
-import { connect } from "react-redux";
+} from 'react-native-paper';
+import { connect } from 'react-redux';
 
-import { addSet } from "../../../data/session/sessionActions";
+import { addSet } from '../../../data/session/sessionActions';
 
 const Exercise = ({ route, addThatSet, currentSession }) => {
   const [showInputs, toggleInputs] = useState(false);
-  const [reps, updateReps] = useState("");
-  const [weight, updateWeight] = useState("");
+  const [reps, updateReps] = useState('');
+  const [weight, updateWeight] = useState('');
 
   const { exercise } = route.params;
   const exerciseHistory = currentSession.exercises[exercise.id] || [];
@@ -24,8 +24,8 @@ const Exercise = ({ route, addThatSet, currentSession }) => {
 
   const addSet = () => {
     addThatSet({ set: { weight, reps }, exerciseId: exercise.id });
-    updateReps("");
-    updateWeight("");
+    updateReps('');
+    updateWeight('');
     toggleInputs(false);
   };
 
@@ -89,10 +89,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   inputContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   containerStyle: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     padding: 20,
     margin: 20,
     minHeight: 350,

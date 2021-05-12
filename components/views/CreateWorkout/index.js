@@ -1,3 +1,3 @@
-import CreateWorkout from "./CreateWorkout";
+import CreateWorkout from './CreateWorkout';
 
 export default CreateWorkout;

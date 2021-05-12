@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { Card } from "react-native-paper";
-import PredictiveInput from "../PredictiveInput";
-import jsonData from "../../../data/exerciseData";
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Card } from 'react-native-paper';
+import PredictiveInput from '../PredictiveInput';
+import jsonData from '../../../data/exerciseData';
 
-const AddExercise = ({onSubmit}) => {
+const AddExercise = ({ onSubmit }) => {
+  const [exercise, updateExercise] = useState({});
 
-  const [exercise, updateExercise] = useState({})
-  
   const onTextChange = (e) => {
-    updateExercise(e)
+    updateExercise(e);
   };
 
   const addExercise = (e) => {
-    onSubmit(exercise)
+    onSubmit(exercise);
   };
 
   return (
@@ -35,8 +34,8 @@ const AddExercise = ({onSubmit}) => {
 const styles = StyleSheet.create({
   newExerciseCard: {
     zIndex: 1,
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
   },
 });
 

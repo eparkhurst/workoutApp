@@ -1,6 +1,6 @@
-import React from "react";
-import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
-import { List, Divider } from "react-native-paper";
+import React from 'react';
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { List, Divider } from 'react-native-paper';
 
 const Item = ({ disabled, title, onPress, right, left }) => (
   <View>

@@ -1,7 +1,7 @@
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
-import { Card } from "react-native-paper";
-import { connect } from "react-redux";
+import React from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { Card } from 'react-native-paper';
+import { connect } from 'react-redux';
 
 const getExerciseNumber = (workout) => {
   return Object.keys(workout.exercises).reduce((p, c) => {
@@ -18,7 +18,7 @@ const History = ({ history }) => {
           <Card.Title title={workout.workoutTitle} />
           <Card.Content>
             <Text>{`completed: ${new Date(workout.id).toLocaleDateString(
-              "en-US"
+              'en-US'
             )}`}</Text>
             <Text>{`exercises: ${getExerciseNumber(workout)}`}</Text>
           </Card.Content>
@@ -30,7 +30,7 @@ const History = ({ history }) => {
 
 const styles = StyleSheet.create({
   card: {
-    marginBottom: "20px",
+    marginBottom: '20px',
   },
 });
 

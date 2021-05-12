@@ -1,13 +1,13 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 const stuff = fs.readFile(
-  path.resolve(__dirname, "rawExercises.txt"),
-  "utf8",
+  path.resolve(__dirname, 'rawExercises.txt'),
+  'utf8',
   (err, file) => {
-    const list = file.trim().split("\n");
+    const list = file.trim().split('\n');
     const formatted = list.map((item, i) => {
-      const [title, area] = item.split(",");
+      const [title, area] = item.split(',');
       return {
         id: i + 1,
         title,
@@ -19,7 +19,7 @@ const stuff = fs.readFile(
 );
 
 const writeIt = (content) => {
-  fs.writeFile(path.resolve(__dirname, "exerciseData.js"), content, (err) => {
+  fs.writeFile(path.resolve(__dirname, 'exerciseData.js'), content, (err) => {
     if (err) {
       console.error(err);
       return;

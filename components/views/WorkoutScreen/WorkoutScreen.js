@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Text, View, StyleSheet, FlatList } from "react-native";
 import {
@@ -22,7 +22,6 @@ import { saveWorkout } from "../../../data/history/historyActions";
 import { updateWorkout } from "../../../data/workouts/workoutActions";
 import AddExercise from "../../common/AddExercise";
 
-
 const WorkoutScreen = ({
   route,
   addThatSet,
@@ -41,8 +40,7 @@ const WorkoutScreen = ({
   const [reps, updateReps] = useState("");
   const [weight, updateWeight] = useState("");
   const workout = route.params.workout;
-  const currentWorkout =
-    workouts.find((wo) => wo.id == workout.id) || {};
+  const currentWorkout = workouts.find((wo) => wo.id == workout.id) || {};
   console.log(currentWorkout);
 
   const hideModal = () => toggleInputs(false);
@@ -64,14 +62,13 @@ const WorkoutScreen = ({
   };
 
   const addExercise = (newExercise) => {
-    updateShowExercise(false)
-    if(!newExercise.id) newExercise.id = Date.now();
+    updateShowExercise(false);
+    if (!newExercise.id) newExercise.id = Date.now();
     newExercise.id = String(newExercise.id);
     _addExerciseToSession({ exercise: newExercise });
     const exercises = [...currentWorkout.exercises, newExercise];
     _updateWorkout({ ...currentWorkout, exercises });
   };
-  
 
   const getHistory = (exerciseId) => {
     const sets = currentSession.exercises[exerciseId];
@@ -89,7 +86,8 @@ const WorkoutScreen = ({
   const renderItem = ({ item }) => (
     <Item
       right={
-        currentSession.workoutTitle === currentWorkout.title && getHistory(item.id)
+        currentSession.workoutTitle === currentWorkout.title &&
+        getHistory(item.id)
       }
       left={
         editing && (
@@ -109,7 +107,6 @@ const WorkoutScreen = ({
       }}
     ></Item>
   );
-
 
   return (
     <Provider>
@@ -200,11 +197,11 @@ const WorkoutScreen = ({
         <Modal
           visible={showAddExercise}
           onDismiss={() => {
-            updateShowExercise(false)
+            updateShowExercise(false);
           }}
           contentContainerStyle={styles.containerStyle}
         >
-          <AddExercise onSubmit={addExercise}/>
+          <AddExercise onSubmit={addExercise} />
         </Modal>
       </Portal>
     </Provider>
@@ -243,13 +240,14 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ currentSession, workouts }) => ({
-   currentSession,
-   workouts,
-   });
+  currentSession,
+  workouts,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   addThatSet: (setDetails) => dispatch(addSet(setDetails)),
-  _addExerciseToSession: (setDetails) => dispatch(addExerciseToSession(setDetails)),
+  _addExerciseToSession: (setDetails) =>
+    dispatch(addExerciseToSession(setDetails)),
   _createWorkout: (setDetails) => dispatch(createWorkout(setDetails)),
   _endWorkout: (setDetails) => dispatch(endWorkout(setDetails)),
   _saveWorkout: (setDetails) => dispatch(saveWorkout(setDetails)),
